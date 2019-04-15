@@ -11,4 +11,4 @@ app.post('/expense', (req, res) => { /* */ })
 app.get('/expenses', (req, res) => { /* */ })
 
 #Uses listen() to start the server
-app.listen(3000, () => console.log('YAY, server ready!'))
+app.listen(3003, () => console.log('YAY, server ready!'))
