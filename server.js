@@ -22,6 +22,9 @@ mongo.connect(
   }
 )
 
+/*The stubs for the API endpoints:*/
+
+// app.get('/', (req, res) => { /* */ })
 
 app.post('/trip', (req, res) => {
   // Acces the new trip form data query vía express
@@ -40,12 +43,16 @@ app.post('/trip', (req, res) => {
 
   })
 })
-
-
-/*The stubs for the API endpoints:*/
-// app.get('/', (req, res) => { /* */ })
-app.post('/trip', (req, res) => { /* */ })
-app.get('/trips', (req, res) => { /* */ })
+app.get('/trips', (req, res) => {
+  // Mongo calling and array it
+  trips.find().toArray((err, items) => {
+    if(err){
+      console.error(err)
+      res.status(500).json({err: err})
+    }
+    res.status(200).json({ trips: items})
+  })
+})
 app.post('/expense', (req, res) => { /* */ })
 app.get('/expenses', (req, res) => { /* */ })
 
