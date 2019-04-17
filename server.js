@@ -70,7 +70,17 @@ app.post('/expense', (req, res) => {
     }
   )
 })
-app.get('/expenses', (req, res) => { /* */ })
+app.get('/expenses', (req, res) => {
+  //find with params because its a non relational DB and needs to be matched with trip ID
+  expenses.find({trip: req.body.trip}).toArray((err,items) => {
+    if(err){
+      console.error(error)
+      res.status(500).json({err:err})
+      return
+    }
+    res.status(200).json({trips:items})
+  })
+})
 
 /*Uses listen() to start the server*/
 app.listen(3003, () => console.log('YAY, server ready!'))
